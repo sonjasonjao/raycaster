@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   errors_and_exits.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:01:25 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/14 14:31:30 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D.h"
+#include "../include/raycaster.h"
 
 void	cleanup_and_exit(t_game *game, char *str, bool success, bool textures)
 {
@@ -19,6 +7,8 @@ void	cleanup_and_exit(t_game *game, char *str, bool success, bool textures)
 	i = 0;
 	free_array(game->map, 1);
 	free_array(game->asset_paths, 0);
+	if (game->sprites)
+		free (game->sprites);
 	if (game->mlx != NULL)
 		mlx_terminate(game->mlx);
 	while (textures && i < TEXTURE_COUNT)

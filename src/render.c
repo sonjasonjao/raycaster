@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:02:03 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/14 16:05:49 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D.h"
+#include "../include/raycaster.h"
 
 static void	draw_ceiling_floor(t_game *game)
 {
@@ -47,6 +35,7 @@ void	render_map(t_game *game)
 	int		x;
 	t_dda	*dda;
 	double	wallhitpoint;
+	double	z_buffer[MAX_SCREEN_WIDTH];
 
 	draw_ceiling_floor(game);
 	dda = malloc(sizeof(t_dda));
@@ -60,8 +49,10 @@ void	render_map(t_game *game)
 		get_line_properties(dda, game);
 		get_wallhitpoint(dda, &wallhitpoint);
 		draw_wall_stripe(dda, game, wallhitpoint, x);
+		z_buffer[x] = dda->corr_dist;
 		x++;
 	}
+	render_sprites(game, dda, z_buffer);
 	free (dda);
 	dda = NULL;
 	render_minimap(game);
@@ -78,7 +69,8 @@ static void	init_images(t_game *game)
 			13 * TILE);
 	if (!game->minimapimage)
 		cleanup_and_exit(game, ERRNEWIMG, 0, 1);
-	if (mlx_image_to_window(game->mlx, game->minimapimage, 0, 0) < 0)
+	if (mlx_image_to_window(game->mlx, game->minimapimage,
+			0, 0) < 0)
 		cleanup_and_exit(game, ERRIMG, 0, 1);
 }
 
@@ -87,6 +79,9 @@ void	init_maps(t_game *game)
 	int	i;
 
 	i = 0;
+	game->asset_paths[SPRITE] = ft_strdup("textures/sprite.png");
+	if (!game->asset_paths[SPRITE])
+		cleanup_and_exit(game, ERRMEM, 0, 0);
 	while (i < TEXTURE_COUNT)
 	{
 		game->textures[i] = mlx_load_png(game->asset_paths[i]);

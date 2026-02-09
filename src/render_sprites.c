@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_sprites_bonus.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:02:52 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/15 11:45:20 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D_bonus.h"
+#include "../include/raycaster.h"
 
 /*Tex y helper: how far vertically inside the sprite this pixel is.
 It is used to calculate the y position in the texture of this pixel.*/

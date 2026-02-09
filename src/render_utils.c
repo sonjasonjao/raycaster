@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_utils.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:01:59 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/15 11:28:55 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D.h"
+#include "../include/raycaster.h"
 
 /* Stores RGB values into integer by performing bitshifting.
 - Red is shifted 24 bits left

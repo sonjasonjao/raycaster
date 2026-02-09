@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 12:48:44 by khiidenh          #+#    #+#             */
-/*   Updated: 2025/08/15 11:29:28 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#ifndef RAYCASTER_H
+# define RAYCASTER_H
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/includes/libft.h"
 # include <fcntl.h>

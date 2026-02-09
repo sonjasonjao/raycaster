@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   game_mechanics.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:01:31 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/15 11:17:53 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D.h"
+#include "../include/raycaster.h"
 
 /* Adjusts the player's y and x direction vector as prepares for rotation
 - rotspeed is a combination of the speed, the direction in which we will rotate
@@ -23,15 +11,15 @@ static void	rotate(t_game *game, double rotation_dir)
 {
 	double	rotspeed;
 	double	old_dir_x;
+	double	old_dir_y;
 	double	old_plane_x;
 
 	rotspeed = SPEED * rotation_dir * game->mlx->delta_time;
 	old_dir_x = game->player.dir_x;
+	old_dir_y = game->player.dir_y;
 	old_plane_x = game->plane_x;
-	game->player.dir_x = game->player.dir_x * cos(rotspeed)
-		- game->player.dir_y * sin(rotspeed);
-	game->player.dir_y = old_dir_x * sin(rotspeed)
-		+ game->player.dir_y * cos(rotspeed);
+	game->player.dir_x = old_dir_x * cos(rotspeed) - old_dir_y * sin(rotspeed);
+	game->player.dir_y = old_dir_x * sin(rotspeed) + old_dir_y * cos(rotspeed);
 	game->plane_x = game->plane_x * cos(rotspeed) - game->plane_y
 		* sin(rotspeed);
 	game->plane_y = old_plane_x * sin(rotspeed) + game->plane_y
@@ -71,6 +59,21 @@ int y_sign, int x_sign)
 	game->player.x = new_x;
 }
 
+void	key_hook(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
+	{
+		game->mouse_lock = !game->mouse_lock;
+		if (!game->mouse_lock)
+			mlx_set_cursor_mode(game->mlx, MLX_MOUSE_HIDDEN);
+		else
+			mlx_set_cursor_mode(game->mlx, MLX_MOUSE_NORMAL);
+	}
+}
+
 void	loop_hook(void *param)
 {
 	t_game	*game;
@@ -91,4 +94,28 @@ void	loop_hook(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	render_map(game);
+}
+
+/*Handles the rotation if we use mouse instead of left/right keys.
+Sensitivity tracks the current mouse position's dist from screen
+center, and gives that (multiplied with 0.01) to rotate
+function. After each rotate call, it sets mouse position back
+to the center of the screen.*/
+void	cursor_hook(void *param)
+{
+	t_game	*game;
+	int		old_x;
+	int		old_y;
+	double	sensitivity;
+
+	game = param;
+	if (!game->mouse_lock)
+	{
+		mlx_get_mouse_pos(game->mlx, &old_x, &old_y);
+		sensitivity = (old_x - MAX_SCREEN_WIDTH / 2) * 0.01;
+		if (sensitivity != 0)
+			rotate(game, sensitivity);
+		mlx_set_mouse_pos(game->mlx, MAX_SCREEN_WIDTH / 2,
+			MAX_SCREEN_HEIGHT / 2);
+	}
 }

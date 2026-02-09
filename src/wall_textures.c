@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   wall_textures.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:02:06 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/15 11:29:42 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D.h"
+#include "../include/raycaster.h"
 
 /*Calculates the exact point inside a square at which we hit a wall.
 Subtracting by floor(temp) leaves us with the decimal part of the result.*/
@@ -55,7 +43,7 @@ static int	get_tex_x(double wallhitpoint, t_dda *dda, int tex_size)
 darker by shifting the bits to "divide by 2" ie. removing the last digit,
 and then setting the first bit of every bite to zero by calling AND with
 0111 1111 0111 1111 0111 1111.*/
-static int	get_curr_color(t_game *game, enum e_textures type, int index,
+int	get_curr_color(t_game *game, enum e_textures type, int index,
 	t_dda *dda)
 {
 	int	color[3];
@@ -65,7 +53,7 @@ static int	get_curr_color(t_game *game, enum e_textures type, int index,
 	while (i < 3)
 	{
 		color[i] = game->textures[type]->pixels[index + i];
-		if (dda->hor_side)
+		if (type != SPRITE && dda->hor_side)
 			color[i] = (color[i] >> 1) & 8355711;
 		i++;
 	}

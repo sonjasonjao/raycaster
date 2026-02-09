@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_minimap.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:01:55 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/14 14:32:54 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D.h"
+#include "../include/raycaster.h"
 
 static int	x_edges(double player, bool start, int max, int start_point)
 {
@@ -73,7 +61,7 @@ static void	draw_minimap_base(t_game *game, int x_start, int y_start, int y_end)
 		{
 			if (game->map[y][x] == '1' || game->map[y][x] == ' ')
 				draw_pixels(game, WALL, x1 * TILE, y1 * TILE);
-			else if (ft_strchr("0NSEW", game->map[y][x]))
+			else if (ft_strchr("0NSEWH", game->map[y][x]))
 				draw_pixels(game, BASE, x1 * TILE, y1 * TILE);
 			x1++;
 			x++;

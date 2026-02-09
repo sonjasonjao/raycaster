@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_sprites_utils_bonus.c                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sojala <sojala@student.hive.fi>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 12:02:57 by sojala            #+#    #+#             */
-/*   Updated: 2025/08/15 10:48:16 by sojala           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../include/cub3D_bonus.h"
+#include "../include/raycaster.h"
 
 /*This distance is only used to sort the sprites, so to save some
 time and energy, the square root will not be calculated
