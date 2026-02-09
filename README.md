@@ -30,9 +30,10 @@ brew install glfw cmake
 - Press m to enable or disable mouse rotation mode
 <br><br>
 ### My areas of responsibility
-- Implementation of the raycasting logic with wall texture mapping
+- Implementation of the raycasting logic with wall texture mapping, using a DDA algorithm
 - Rendering the first-person scene with sprites
 <br><br>
 ### Personal learnings
-- Basic principles of raycasting
-- Strengthening my skills in using a minimal graphic library
+- Basic principles of raycasting: calculating correct lengths of rays, wall hitting points, logic of drawing sprites, etc.
+- Strengthening my understanding of using a minimal graphic library: hooks, window handling, pixel drawing, textures
+- Reinforcing my skills in designing and using nested structs in C to organize and store all the data related to the game
