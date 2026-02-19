@@ -1,4 +1,4 @@
-# Raycaster - a a simple 3D-style maze renderer
+# Raycaster - a simple 3D-style maze renderer
 This project was carried out as a team of two with <a href="https://github.com/kaloliina">@kaloliina</a>.\
 We build the program for a 42 curriculum project called cub3d at Hive Helsinki.
 The goal of this project was to build "a dynamic view inside a maze", a 3D-looking maze renderer in 2D, inspired by the Wolfenstein 3D game.
