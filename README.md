@@ -19,6 +19,10 @@ sudo apt install libglfw3-dev libgl1-mesa-dev libegl1-mesa-dev libxrandr-dev lib
 ```bash
 brew install glfw cmake
 ```
+**Compile**
+```bash
+make
+```
 #### 3. Run:
 ./raycaster \<path to map file>, for example
 ```bash
