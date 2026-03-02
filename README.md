@@ -3,6 +3,8 @@ This project was carried out as a team of two with <a href="https://github.com/k
 We build the program for a 42 curriculum project called cub3d at Hive Helsinki.
 The goal of this project was to build "a dynamic view inside a maze", a 3D-looking maze renderer in 2D, inspired by the Wolfenstein 3D game.
 <br><br>
+![](demo.png)
+<br><br>
 ### Quick Start 🚀
 #### 1. Clone the repository:
 ```bash
